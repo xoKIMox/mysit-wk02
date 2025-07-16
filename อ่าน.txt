@@ -1,0 +1,15 @@
+1. ค้นหาคำถามทั้งหมด	Question.objects.all()
+2. ค้นหาคำถามที่มีคำว่า AI ในคำถาม	Question.objects.filter(text__icontains="AI")
+3. ค้นหาคำถามที่เปิดหลังวันที่ 1 ก.ค. 2565	Question.objects.filter(published_date__gt=datetime(2022, 7, 1))
+4. ค้นหาคำถามที่มี id เป็น 13	Question.objects.get(id=13)
+5. ค้นหาตัวเลือกทั้งหมดของคำถามที่มี id เป็น 16	Choice.objects.filter(question_id=16)
+6. แสดงชุดคำถามและตัวเลือกที่คำถามมีคำว่า Tailwind	
+
+python
+คัดลอก
+แก้ไข
+questions = Question.objects.filter(text__icontains="Tailwind")
+for q in questions:
+    print(q.text)
+    for c in Choice.objects.filter(question=q):
+        print(" -", c.text, "| ✅" if c.correct else "")
